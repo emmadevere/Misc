@@ -26,3 +26,21 @@ RecurrencePlot = function(from, to, col1, col2) {
     ggplot( ., aes(x=x, y=y, fill=erf(sec(x)-sec(y)^2))) + geom_tile() + 
     scale_fill_gradientn(colours=colorRampPalette(c(col1, col2))(2)) + opt}
 RecurrencePlot(from = -5*pi, to = 5*pi, col1 = m, col2= n)
+
+#picking my colors
+m <- (wes_palette("Rushmore")[c(4)])
+n <- (wes_palette("Rushmore")[c(2)])
+
+#Trigonometric Pattern Creation
+RecurrencePlot = function(from, to, col1, col2) {
+  opt = theme(legend.position  = "none",
+              panel.background = element_blank(),
+              axis.ticks       = element_blank(),
+              panel.grid       = element_blank(),
+              axis.title       = element_blank(),
+              axis.text        = element_blank()) 
+  seq(from, to, by = .1) %>% expand.grid(x=., y=.) %>% 
+    ggplot( ., aes(x=x, y=y, fill=erf((tan(x)^5)-tan(y)))) + geom_tile() + 
+    scale_fill_gradientn(colours=colorRampPalette(c(col1, col2))(2)) + opt}
+RecurrencePlot(from = -5*pi, to = 5*pi, col1 = m, col2= n)
+
